@@ -1,0 +1,44 @@
+services:
+  like-db:
+    image: mysql:8.0
+    container_name: sns-like-db
+    environment:
+      MYSQL_DATABASE: likedb
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_ROOT_HOST: '%'
+    ports:
+      - "13307:3306"
+    volumes:
+      - like-db-data:/var/lib/mysql
+    networks:
+      - sns-network
+    command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    restart: unless-stopped
+
+  like-api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: sns-like-api
+    ports:
+      - "8082:8082"
+    depends_on:
+      - like-db
+    environment:
+      SPRING_PROFILES_ACTIVE: prod
+      SPRING_DATASOURCE_URL: jdbc:mysql://sns-like-db:3306/likedb?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: rootpassword
+      SERVER_PORT: 8082
+    networks:
+      - sns-network
+    volumes:
+      - ./logs:/app/logs
+    restart: unless-stopped
+
+volumes:
+  like-db-data:
+
+networks:
+  sns-network:
+    external: true

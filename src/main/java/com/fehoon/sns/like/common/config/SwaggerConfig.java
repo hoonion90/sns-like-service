@@ -1,4 +1,4 @@
-package com.fehoon.sns.like.common;
+package com.fehoon.sns.like.common.config;
 
 import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import io.swagger.v3.oas.annotations.info.Info;

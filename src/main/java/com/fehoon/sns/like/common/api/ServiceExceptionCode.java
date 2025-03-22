@@ -1,4 +1,4 @@
-package com.fehoon.sns.post.common.api;
+package com.fehoon.sns.like.common.api;
 
 import lombok.Getter;
 

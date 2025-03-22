@@ -1,7 +1,7 @@
-package com.fehoon.sns.post;
+package com.fehoon.sns.like;
 
-import com.fehoon.sns.post.common.api.ApiResponse;
-import com.fehoon.sns.post.common.api.ServiceException;
+import com.fehoon.sns.like.common.api.ApiResponse;
+import com.fehoon.sns.like.common.api.ServiceException;
 import io.swagger.v3.oas.annotations.Hidden;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindException;
